@@ -1,0 +1,28 @@
+---
+version: "3"
+services:
+  web:
+    build: .
+    hostname: myapp.com
+    ports:
+      - 8081:80
+    depends_on:
+      - db
+    networks:
+      service-network:
+        ipv4_address: 192.168.92.20
+  db:
+    image: postgres:latest
+    networks:
+      service-network:
+        ipv4_address: 192.168.92.21
+    environment:
+      POSTGRES_USER: wgh
+      POSTGRES_PASSWORD: 6030
+      POSTGRES_DB: maridb
+networks:
+  service-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.92.0/24

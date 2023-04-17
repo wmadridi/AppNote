@@ -1,2 +1,1 @@
-# AppNote
-Code
+# NoteApp

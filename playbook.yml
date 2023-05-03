@@ -1,0 +1,25 @@
+---
+- name: Deploy Docker Compose
+  hosts: all 
+  become: true
+
+  tasks:
+  - name: Update apt cache
+    apt:
+      update_cache: yes
+
+  - name: Install Docker
+    apt:
+      name: docker.io
+      state: present
+
+  - name: Copy files to remote host
+    copy:
+      src: /home/eng22wgh/AppNote
+      dest: /home/eng22wgh/AppNote
+
+  - name: Start Docker Compose
+    command: docker-compose up -d
+    args:
+      chdir: /home/eng22wgh
+

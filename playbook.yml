@@ -9,17 +9,15 @@
       update_cache: yes
 
   - name: Install Docker
-    apt:
-      name: docker.io
-      state: present
+    command: curl -fsSL https://get.docker.com -o get-docker.sh | sudo sh ./get-docker.sh 
 
   - name: Copy files to remote host
     copy:
-      src: /home/eng22wgh/AppNote
-      dest: /home/eng22wgh/AppNote
+      src: /home/ubuntu/workspace/AppNote
+      dest: /home/ubuntu/AppNote
 
   - name: Start Docker Compose
     command: docker-compose up -d
     args:
-      chdir: /home/eng22wgh
+      chdir: /home/ubuntu
 

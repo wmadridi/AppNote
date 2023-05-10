@@ -8,8 +8,11 @@
     apt:
       update_cache: yes
 
-  - name: Install Docker
-    command: curl -fsSL https://get.docker.com -o get-docker.sh | sudo sh ./get-docker.sh 
+  - name: DL Docker
+    command: curl -fsSL https://get.docker.com -o get-docker.sh 
+    
+  - name: Install Docker  
+    command: sudo sh ./get-docker.sh 
 
   - name: Copy files to remote host
     copy:
@@ -17,7 +20,7 @@
       dest: /home/ubuntu/AppNote
 
   - name: Start Docker Compose
-    command: docker-compose up -d
+    command: docker-compose up --build -d 
     args:
       chdir: /home/ubuntu
 

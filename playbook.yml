@@ -22,5 +22,5 @@
   - name: Start Docker Compose
     command: docker compose up --build -d 
     args:
-      chdir: /home/ubuntu
+      chdir: /home/ubuntu/AppNote
 

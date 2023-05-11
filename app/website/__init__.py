@@ -11,7 +11,7 @@ db = SQLAlchemy()
 
 
 locale_session = Session(bind=engine)
-url= 'postgresql://wgh:6030@database-1.cemgj9zokunl.us-east-1.rds.amazonaws.com:5432/maridb'
+url= 'postgresql://postgres:123456wgh@database-1.cemgj9zokunl.us-east-1.rds.amazonaws.com:5432/maridb'
 
 def create_app():
     app = Flask(__name__) # App initialization

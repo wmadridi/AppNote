@@ -17,8 +17,8 @@ services:
       service-network:
         ipv4_address: 192.168.92.21
     environment:
-      POSTGRES_USER: wgh
-      POSTGRES_PASSWORD: 6030
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456wgh
       POSTGRES_DB: maridb
 networks:
   service-network:

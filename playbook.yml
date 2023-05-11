@@ -17,7 +17,7 @@
   - name: Copy files to remote host
     copy:
       src: /home/ubuntu/workspace/AppNote
-      dest: /home/ubuntu/AppNote
+      dest: /home/ubuntu/
 
   - name: Start Docker Compose
     command: docker compose up --build -d 

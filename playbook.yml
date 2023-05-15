@@ -1,11 +1,12 @@
 ---
 - name: Deploy Docker Compose
   hosts: all
-  become: true
-  tasks: Task 1
-- name: Update apt cache
-  apt:
+  tasks:
+    - name: Update apt cache
+      apt:
         update_cache: yes
+      become: true
+
   -name: DL Docker
   command: curl -fsSL https://get.docker.com -o get-docker.sh 
 

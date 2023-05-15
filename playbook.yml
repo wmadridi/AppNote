@@ -1,23 +1,20 @@
 ---
 - name: Deploy Docker Compose
-  hosts: all 
+  hosts: all
   become: true
-
   tasks:
-  - name: Update apt cache
-    apt:
-      update_cache: yes
-
-  - name: Check if Docker is installed
-    ansible.builtin.stat: null
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+    - name: Check if Docker is installed
+      ansible.builtin.stat: null
       path: /var/lib/docker
-    register: docker_check
-
-  - name: Install Docker if not installed
-    ansible.builtin.get_url: null
-    url: https://get.docker.com
-    dest: /home/ubuntu/get-docker.sh
-    when: docker_check.stat.exists == False
+      register: docker_check
+    - name: Install Docker if not installed
+      ansible.builtin.get_url: null
+      url: https://get.docker.com
+      dest: /home/ubuntu/get-docker.sh
+      when: docker_check.stat.exists == False
 
   #- name: Install Docker
    # ansible.builtin.script: null

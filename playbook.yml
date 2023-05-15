@@ -7,15 +7,15 @@
       apt:
         update_cache: yes
 
-- name: Check if Docker is installed
-  command: docker --version
-  register: docker_check
-  ignore_errors: true
+- name: Check if Docker directory exists
+  stat:
+    path: /path/to/docker
+  register: docker_dir
 
-- name: Print Docker version if installed
+- name: Print Docker directory status
   debug:
-    msg: "{{ docker_check.stdout }}"
-  when: docker_check.rc == 0
+    msg: "Docker directory exists: {{ docker_dir.stat.exists }}"
+
 
 
   #- name: Install Docker

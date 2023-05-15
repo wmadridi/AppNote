@@ -8,19 +8,31 @@
       become: true
 
 - name: DL Docker
-  command: curl -fsSL https://get.docker.com -o get-docker.sh 
+  hosts: all
+  tasks:
+    - name: Download Docker
+      shell: command
+      become: true
 
-- name: Install Docker  
-  command: sudo sh ./get-docker.sh 
+- name: Install Docker
+  hosts: all
+  tasks:
+    - name: Execute get-docker.sh
+      command: sudo sh ./get-docker.sh
+      become: true
 
 - name: Copy files to remote host
-  copy:
-      src: /home/ubuntu/workspace/AppNote
-      dest: /home/ubuntu/
+  hosts: all
+  tasks:
+    - name: Copy AppNote directory
+      copy:
+        src: /home/ubuntu/workspace/AppNote
+        dest: /home/ubuntu/
 
 - name: Start Docker Compose
-  command: docker compose up --build -d 
-  args:
-      chdir: /home/ubuntu/AppNote
-
-
+  hosts: all
+  tasks:
+    - name: Run Docker Compose
+      command: docker compose up --build -d
+      args:
+        chdir: /home/ubuntu/AppNote

@@ -7,7 +7,7 @@
         update_cache: yes
       become: true
 
-  -name: DL Docker
+- name: DL Docker
   command: curl -fsSL https://get.docker.com -o get-docker.sh 
 
 - name: Install Docker  

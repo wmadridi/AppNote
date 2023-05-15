@@ -10,7 +10,7 @@
 
   - name: Check if Docker is installed
     ansible.builtin.stat: null
-    path: /var/lib/docker
+      path: /var/lib/docker
     register: docker_check
 
   - name: Install Docker if not installed

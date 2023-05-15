@@ -6,27 +6,11 @@
     - name: Update apt cache
       apt:
         update_cache: yes
+  -name: DL Docker
+  command: curl -fsSL https://get.docker.com -o get-docker.sh 
 
-- name: Check if Docker directory exists
-  stat:
-    path: /path/to/docker
-  register: docker_dir
-
-- name: Print Docker directory status
-  debug:
-    msg: "Docker directory exists: {{ docker_dir.stat.exists }}"
-
-
-
-  #- name: Install Docker
-   # ansible.builtin.script: null
-    #src: /home/ubuntu/get-docker.sh
-    #when: docker_check.stat.exists == False
-  #- name: DL Docker
-   # command: curl -fsSL https://get.docker.com -o get-docker.sh 
-
-  #- name: Install Docker  
-   # command: sudo sh ./get-docker.sh 
+- name: Install Docker  
+  command: sudo sh ./get-docker.sh 
 
 - name: Copy files to remote host
   copy:

@@ -1,37 +1,34 @@
 ---
 - name: Deploy Docker Compose
   hosts: all
+  become: yes
   tasks:
     - name: Update apt cache
       apt:
         update_cache: yes
-      become: true
+      become: yes
 
-- name: DL Docker
-  hosts: all
-  tasks:
-    - name: Download Docker
-      shell: command
-      become: true
+    - name: Clone repository from GitHub
+      git:
+        repo: https://github.com/wmadridi/AppNote.git
+        dest: /home/ubuntu/AppNote
+        version: main
+      become: yes
 
-- name: Install Docker
-  become: yes
-  shell :
-   curl -fsSL https://get.docker.com -o get-docker.sh
-    sudo sh ./get-docker.sh
-
-- name: Copy files to remote host
-  hosts: all
-  tasks:
-    - name: Copy AppNote directory
-      copy:
-        src: /home/ubuntu/workspace/AppNote
-        dest: /home/ubuntu/
-
-- name: Start Docker Compose
-  hosts: all
-  tasks:
-    - name: Run Docker Compose
-      command: docker compose up --build -d
+    - name: Clean repository
+      command: git clean -dffx
       args:
         chdir: /home/ubuntu/AppNote
+      become: yes
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+      become: yes
+
+    - name: Start Docker Compose
+      command: docker-compose up -d
+      args:
+        chdir: /home/ubuntu/AppNote
+      become: yes

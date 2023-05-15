@@ -6,15 +6,17 @@
     - name: Update apt cache
       apt:
         update_cache: yes
-    - name: Check if Docker is installed
-      ansible.builtin.stat: null
-      path: /var/lib/docker
-      register: docker_check
-    - name: Install Docker if not installed
-      ansible.builtin.get_url: null
-      url: https://get.docker.com
-      dest: /home/ubuntu/get-docker.sh
-      when: docker_check.stat.exists == False
+
+- name: Check if Docker is installed
+  command: docker --version
+  register: docker_check
+  ignore_errors: true
+
+- name: Print Docker version if installed
+  debug:
+    msg: "{{ docker_check.stdout }}"
+  when: docker_check.rc == 0
+
 
   #- name: Install Docker
    # ansible.builtin.script: null

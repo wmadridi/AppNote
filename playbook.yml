@@ -15,11 +15,10 @@
       become: true
 
 - name: Install Docker
-  hosts: all
-  tasks:
-    - name: Execute get-docker.sh
-      command: sudo sh ./get-docker.sh
-      become: true
+  become: yes
+  shell :
+   curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh ./get-docker.sh
 
 - name: Copy files to remote host
   hosts: all

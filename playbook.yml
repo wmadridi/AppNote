@@ -2,7 +2,7 @@
 - name: Deploy Docker Compose
   hosts: all
   become: true
-  tasks:
+  tasks: Task 1
     - name: Update apt cache
       apt:
         update_cache: yes

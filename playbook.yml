@@ -3,8 +3,8 @@
   hosts: all
   become: true
   tasks: Task 1
-    - name: Update apt cache
-      apt:
+- name: Update apt cache
+  apt:
         update_cache: yes
   -name: DL Docker
   command: curl -fsSL https://get.docker.com -o get-docker.sh 

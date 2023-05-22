@@ -1,5 +1,5 @@
 ---
-- name: Deploy Docker Container 
+- name: Deploy Docker Compose
   hosts: all
   become: yes
   tasks:
@@ -21,20 +21,14 @@
         chdir: /home/ubuntu/AppNote
       become: yes
 
-    - name: Install Docker 
+    - name: Install Docker Compose
       apt:
-        name: docker
+        name: docker-compose
         state: present
       become: yes
 
-    - name: Build Docker 
-      command: docker build -t myapp .
-      args:
-        chdir: /home/ubuntu/AppNote
-      become: yes
-
-    - name: Start Docker 
-      command: docker run -d -p 8080:80 -p 5432:5432 --name noteapp-web-01 myapp 
+    - name: Start Docker Compose
+      command: docker-compose up -d
       args:
         chdir: /home/ubuntu/AppNote
       become: yes

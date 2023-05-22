@@ -33,4 +33,5 @@ RUN a2enmod wsgi
 RUN a2dissite 000-default.conf
 RUN a2ensite flask-noteapp.conf
 EXPOSE 80
+EXPOSE 5432
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]

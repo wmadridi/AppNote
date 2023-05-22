@@ -1,6 +1,6 @@
-postgresql = { 'hostname': 'database-1.cemgj9zokunl.us-east-1.rds.amazonaws.com',
+postgresql = { 'hostname': '172.31.23.199',
                'database': 'maridb',
-               'username': 'postres',
-               'pwd':'123456wgh',
+               'username': 'postgres',
+               'pwd':'waleed',
                'port_id': 5432
     }

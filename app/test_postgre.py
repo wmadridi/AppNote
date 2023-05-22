@@ -8,8 +8,8 @@ from sqlalchemy_utils import database_exists, create_database
 from config import postgresql as settings
 
 Base = declarative_base()
-url= 'postgresql://postgres:123456wgh@database-1.cemgj9zokunl.us-east-1.rds.amazonaws.com:5432/maridb'
-engine = create_engine('postgresql://postgres:123456wgh@database-1.cemgj9zokunl.us-east-1.rds.amazonaws.com:5432/maridb', echo=True)
+url= 'postgresql://postgres:waleed@172.31.23.199:5432/maridb'
+engine = create_engine('postgresql://postgres:waleed@172.31.23.199:5432/maridb', echo=True)
 Session = sessionmaker()
 
 class Note(Base):

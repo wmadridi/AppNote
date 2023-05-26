@@ -13,7 +13,7 @@
         repo: https://github.com/wmadridi/AppNote.git
         dest: /home/ubuntu/AppNote
         version: main
-      become: yes
+      force: yes
 
     - name: Clean repository
       command: git clean -dffx
